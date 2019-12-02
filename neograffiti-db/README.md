@@ -1,24 +1,17 @@
-# README
+# NeoGraffiti
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Project Description
 
-Things you may want to cover:
+## Feature List
 
-* Ruby version
+## Entity Relationship Diagram (ERD)
 
-* System dependencies
+## Wireframes
 
-* Configuration
+## React Component Heirarchy
 
-* Database creation
+## API Endpoint Documentations
 
-* Database initialization
+## List Dependencies
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Timeframes
