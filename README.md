@@ -1,5 +1,7 @@
 # NeoGraffiti
 
+![LOGO](Wireframe-Images/logo.png)
+
 ## Project Description
 
 NeoGraffiti is an app that users can use to post pictures of art around the world in an more urban environment such as graffiti or street art. 
