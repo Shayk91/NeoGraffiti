@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :update, :destroy]
-  before_action :authorize_request, except: %i[index show]
+  before_action :authorize_request, except: %i[index show index_by_user]
 
   # GET /posts
   def index
@@ -10,8 +10,9 @@ class PostsController < ApplicationController
   end
 
   def index_by_user
-    post = Post.find(params[:post_id])
-    render json: post, status: :ok
+    @user = User.find(params[:user_id])
+    posts = @user.posts
+    render json: posts, status: :ok
   end
 
   # GET /posts/1
@@ -20,13 +21,23 @@ class PostsController < ApplicationController
   end
 
   # POST /posts
-  def create
-    @post = Post.new(post_params)
+  # def create
+  #   @post = Post.new(post_params)
 
-    if @post.save
-      render json: @post, status: :created, location: @post
+  #   if @post.save
+  #     render json: @post, status: :created, location: @post
+  #   else
+  #     render json: @post.errors, status: :unprocessable_entity
+  #   end
+  # end
+
+  def create_by_user
+    user = User.find(params[:user_id])
+    post = Post.new(post_params)
+    if post.save
+      render json: {post: post}, status: :created
     else
-      render json: @post.errors, status: :unprocessable_entity
+      render json: {error: post.errors}, status: :unprocessible_entity
     end
   end
 
