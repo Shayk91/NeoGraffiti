@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
 
-    render json: @posts
+    render json: @posts, include: [:user, :comments]
   end
 
   def index_by_user
@@ -35,9 +35,9 @@ class PostsController < ApplicationController
     user = User.find(params[:user_id])
     post = Post.new(post_params)
     if post.save
-      render json: {post: post}, status: :created
+      render json: post, status: :created
     else
-      render json: {error: post.errors}, status: :unprocessible_entity
+      render json: post.errors, status: :unprocessible_entity
     end
   end
 
