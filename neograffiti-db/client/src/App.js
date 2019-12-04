@@ -3,12 +3,15 @@ import './App.css';
 import { withRouter, Route } from 'react-router-dom';
 import { loginUser, signUpUser, verifyUser, readAllPosts } from './services/api-helper'
 import Header from './components/Header'
+import Footer from './components/Footer'
 import LogInForm from './components/LogInForm'
 import SignUpForm from './components/SignUpForm'
 import Lander from './components/Lander'
 import MainPage from './components/MainPage';
-import Footer from './components/Footer'
 import SideBar from './components/SideBar';
+import Suggestions from './components/Suggestions';
+import SingleImage from './components/SingleImage';
+import Profile from './components/Profile';
 
 class App extends React.Component {
 
@@ -41,7 +44,6 @@ class App extends React.Component {
     if (currentUser) {
       this.setState({ currentUser })
     }
-    console.log(currentUser)
   }
 
 
@@ -94,6 +96,7 @@ class App extends React.Component {
                 <SideBar
                   currentUser={this.state.currentUser}
                 />
+                <Suggestions />
               </div>
             )} />
             :
@@ -109,7 +112,29 @@ class App extends React.Component {
               </div>
             )} />
         }
-        <Route path='/login' render={() => (
+        <Route exact path='/users/:userId' render={(props) => (
+          <div>
+            <Header
+              currentUser={this.state.currentUser}
+              handleLogout={this.handleLogout}
+            />
+            <Profile
+              userId={props.match.params.userId}
+            />
+          </div>
+        )} />
+        <Route path='/posts/:postId' render={(props) => (
+          <div>
+            <Header
+              currentUser={this.state.currentUser}
+              handleLogout={this.handleLogout}
+            />
+            <SingleImage
+              postId={props.match.params.postId}
+            />
+          </div>
+        )} />
+        < Route path='/login' render={() => (
           <LogInForm
             handleLogin={this.handleLogin}
             handleChange={this.authHandleChange}
@@ -117,7 +142,7 @@ class App extends React.Component {
             handleLoginButton={this.handleLoginButton}
           />
         )} />
-        <Route path='/signup' render={() => (
+        < Route path='/signup' render={() => (
           <SignUpForm
             handleSignUp={this.handleSignUp}
             handleChange={this.authHandleChange}
@@ -125,8 +150,8 @@ class App extends React.Component {
             handleLoginButton={this.handleLoginButton}
           />
         )} />
-        <Footer />
-      </div>
+        < Footer />
+      </div >
     )
   }
 }

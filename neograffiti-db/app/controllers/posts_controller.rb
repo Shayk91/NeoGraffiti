@@ -12,12 +12,12 @@ class PostsController < ApplicationController
   def index_by_user
     @user = User.find(params[:user_id])
     posts = @user.posts
-    render json: posts, status: :ok
+    render json: posts, include: [:user, :comments], status: :ok
   end
 
   # GET /posts/1
   def show
-    render json: @post
+  render json: @post, include: [:user, :comments]
   end
 
   # POST /posts

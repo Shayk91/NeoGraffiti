@@ -5,7 +5,7 @@ export default function SideBar(props) {
     <div>
       <h1>{props.currentUser.username}</h1>
       <h2>{props.currentUser.full_name}</h2>
-      <img className='user-image' src={props.currentUser.image} />
+      <img className='user-image' src={props.currentUser.image} alt={props.currentUser.username} />
     </div>
   )
 }

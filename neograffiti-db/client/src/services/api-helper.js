@@ -40,6 +40,11 @@ export const createComment = async (postId, data) => {
   return resp.data
 }
 
+export const getUser = async (userId) => {
+  const resp = await api.get(`/users/${userId}`)
+  return resp.data
+}
+
 export const readAllPosts = async () => {
   const resp = await api.get('/posts')
   return resp.data
