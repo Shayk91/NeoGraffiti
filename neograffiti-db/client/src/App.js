@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { withRouter, Route } from 'react-router-dom';
-import { loginUser, signUpUser, verifyUser, readAllPosts } from './services/api-helper'
+import { loginUser, signUpUser, verifyUser, readAllPosts, createPost } from './services/api-helper'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import LogInForm from './components/LogInForm'
@@ -12,6 +12,9 @@ import SideBar from './components/SideBar';
 import Suggestions from './components/Suggestions';
 import SingleImage from './components/SingleImage';
 import Profile from './components/Profile';
+import EditProfile from './components/EditProfile';
+import CreatePost from './components/CreatePost';
+import EditPost from './components/EditPost';
 
 class App extends React.Component {
 
@@ -20,10 +23,13 @@ class App extends React.Component {
     currentUser: null,
     postFormData: {
       image: '',
-      content: ''
+      content: '',
+      user_id: ''
     },
     commentFormData: {
-      content: ''
+      content: '',
+      user_id: '',
+      post_id: ''
     },
     authFormData: {
       username: '',
@@ -31,7 +37,8 @@ class App extends React.Component {
       email: '',
       full_name: '',
       image: '',
-      bio: ''
+      bio: '',
+      user_id: ''
     }
   }
 
@@ -43,12 +50,29 @@ class App extends React.Component {
     const currentUser = await verifyUser();
     if (currentUser) {
       this.setState({ currentUser })
+      this.setState({
+        postFormData: {
+          user_id: this.state.currentUser.id
+        }
+      })
     }
   }
 
+  handleChange = (e) => {
+    const { name, value } = e.target;
+    this.setState(prevState => ({
+      formData: {
+        ...prevState.formData,
+        [name]: value
+      }
+    }))
+  }
 
-  handleLoginButton = () => {
-    this.props.history.push("/")
+  handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = this.state.postFormData
+    await createPost(this.state.currentUser.id, formData)
+    this.props.history.push('/')
   }
 
   handleLogin = async () => {
@@ -112,27 +136,60 @@ class App extends React.Component {
               </div>
             )} />
         }
-        <Route exact path='/users/:userId' render={(props) => (
-          <div>
-            <Header
-              currentUser={this.state.currentUser}
-              handleLogout={this.handleLogout}
-            />
-            <Profile
-              userId={props.match.params.userId}
-            />
-          </div>
-        )} />
-        <Route path='/posts/:postId' render={(props) => (
+        <Route exact path='/posts/:postId' render={(props) => (
           <div>
             <Header
               currentUser={this.state.currentUser}
               handleLogout={this.handleLogout}
             />
             <SingleImage
+              currentUser={this.state.currentUser}
               postId={props.match.params.postId}
             />
           </div>
+        )} />
+        <Route exact path='/posts/:postId/edit' render={(props) => (
+          <div>
+            <Header
+              currentUser={this.state.currentUser}
+              handleLogout={this.handleLogout}
+            />
+            <EditPost
+              currentUser={this.state.currentUser}
+              postId={props.match.params.postId}
+            />
+          </div>
+        )} />
+        <Route exact path='/accounts/:userId' render={(props) => (
+          <div>
+            <Header
+              currentUser={this.state.currentUser}
+              handleLogout={this.handleLogout}
+            />
+            <Profile
+              currentUser={this.state.currentUser}
+              userId={props.match.params.userId}
+            />
+          </div>
+        )} />
+        <Route exact path='/accounts/:userId/add' render={() => (
+          <div>
+            <Header
+              currentUser={this.state.currentUser}
+              handleLogout={this.handleLogout}
+            />
+            <CreatePost
+              formData={this.state.postFormData}
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+            />
+          </div>
+        )} />
+        <Route exact path='/accounts/:userId/edit' render={(props) => (
+          <EditProfile
+            currentUser={this.state.currentUser}
+            userId={props.match.params.userId}
+          />
         )} />
         < Route path='/login' render={() => (
           <LogInForm
@@ -155,5 +212,4 @@ class App extends React.Component {
     )
   }
 }
-
 export default withRouter(App);

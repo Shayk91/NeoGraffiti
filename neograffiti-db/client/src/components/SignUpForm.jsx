@@ -9,7 +9,6 @@ const SignUpForm = (props) => {
       <form onSubmit={(e) => {
         e.preventDefault();
         props.handleSignUp();
-        props.handleLoginButton();
       }} >
         <p>Email:</p>
         <input name="email" type="text" value={props.formData.email} onChange={props.handleChange} />
@@ -22,7 +21,6 @@ const SignUpForm = (props) => {
         <button>Sign Up</button>
       </form>
       <Link to="/login">Have An Account? Log In</Link>
-
     </div>
   );
 }

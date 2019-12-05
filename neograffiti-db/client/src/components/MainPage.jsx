@@ -6,7 +6,7 @@ export default function MainPage(props) {
     <div>
       {
         props.posts.map(post => (
-          <div>
+          <div key={post.id}>
             <img className='user-image' src={post.user.image} alt={post.user.username} />
             <h1>{post.user.username}</h1>
             <img src={post.image} alt={post.id} />
@@ -14,10 +14,12 @@ export default function MainPage(props) {
             <Link to={`/posts/${post.id}`}>View All Comments</Link>
             {
               post.comments.map(comment => (
-                <p>{comment.content}</p>
+                <div key={comment.id}>
+                  <p>{comment.content}</p>
+                </div>
               ))
             }
-            <p>{post.created_at}</p>
+            <p>{post.timedistance} ago</p>
           </div>
         ))
       }

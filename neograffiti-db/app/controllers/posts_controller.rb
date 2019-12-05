@@ -1,10 +1,15 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :update, :destroy]
   before_action :authorize_request, except: %i[index show index_by_user]
+  include ActionView::Helpers::DateHelper
 
   # GET /posts
   def index
     @posts = Post.all
+    @posts=@posts.map do |post|
+      post.timedistance =  distance_of_time_in_words(post.created_at, Time.now)
+      post
+    end
 
     render json: @posts, include: [:user, :comments]
   end
@@ -17,7 +22,8 @@ class PostsController < ApplicationController
 
   # GET /posts/1
   def show
-  render json: @post, include: [:user, :comments]
+    @post.timedistance =  distance_of_time_in_words(@post.created_at, Time.now)
+    render json: @post, include: [:user, :comments]
   end
 
   # POST /posts

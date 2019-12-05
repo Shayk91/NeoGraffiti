@@ -31,7 +31,7 @@ export const verifyUser = async () => {
 }
 
 export const createPost = async (userId, data) => {
-  const resp = await api.post(`/user/${userId}/posts`, { post: data })
+  const resp = await api.post(`/users/${userId}/posts`, { post: data })
   return resp.data
 }
 
@@ -66,7 +66,7 @@ export const readOnePost = async (postId) => {
 }
 
 export const updateUser = async (userId, data) => {
-  const resp = await api.put(`/users/${userId}`, { user: data })
+  const resp = await api.patch(`/users/${userId}`, { user: data })
   return resp.data
 }
 

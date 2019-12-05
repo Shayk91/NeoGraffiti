@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { getUser } from '../services/api-helper'
 
 export default class Profile extends Component {
@@ -19,6 +20,17 @@ export default class Profile extends Component {
     return (
       <div>
         {
+          this.props.currentUser &&
+            this.props.currentUser.id === user.id ?
+            <div>
+              <Link to={`/accounts/${user.id}/add`}>Add Post</Link>
+              <Link to={`/accounts/${user.id}/edit`}>Edit Profile</Link>
+            </div>
+            :
+            <>
+            </>
+        }
+        {
           user.posts &&
           <div>
             <img className='user-image' src={user.image} alt={user.username} />
@@ -29,7 +41,9 @@ export default class Profile extends Component {
             <h2>Posts</h2>
             {
               user.posts.map(post => (
-                <img src={post.image} alt={post.id} />
+                <div key={post.id}>
+                  <img src={post.image} alt={post.id} />
+                </div>
               ))
             }
           </div>

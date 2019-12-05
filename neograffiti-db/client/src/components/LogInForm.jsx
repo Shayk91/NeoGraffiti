@@ -8,7 +8,6 @@ const LogInForm = (props) => {
       <form onSubmit={(e) => {
         e.preventDefault();
         props.handleLogin();
-        props.handleLoginButton();
       }} >
         <p>Username:</p>
         <input name="username" type="text" value={props.formData.username} onChange={props.handleChange} />

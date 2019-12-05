@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
-  before_action :authorize_request, except: [:create, :index, :show]
+  before_action :authorize_request, except: [:create, :index, :show, :update]
 
   # GET /users
   def index
@@ -28,6 +28,8 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
+    
+
     if @user.update(user_params)
       render json: @user
     else
