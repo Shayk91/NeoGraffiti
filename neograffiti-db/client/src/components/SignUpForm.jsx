@@ -4,23 +4,20 @@ import { Link } from 'react-router-dom'
 const SignUpForm = (props) => {
 
   return (
-    <div className="auth-container">
-      <h2>NeoGraffiti</h2>
-      <form onSubmit={(e) => {
-        e.preventDefault();
-        props.handleSignUp();
-      }} >
-        <p>Email:</p>
-        <input name="email" type="text" value={props.formData.email} onChange={props.handleChange} />
-        <p>Full Name:</p>
-        <input name="full_name" type="text" value={props.formData.full_name} onChange={props.handleChange} />
-        <p>Username:</p>
-        <input name="username" type="text" value={props.formData.username} onChange={props.handleChange} />
-        <p>Password:</p>
-        <input name="password" type="password" value={props.formData.password} onChange={props.handleChange} />
-        <button>Sign Up</button>
+    <div className="signup-form">
+      <h2 className='cg' id='signup-title'>ConcreteGallery</h2>
+      <form >
+        <input autoFocus id='email-input' placeholder='Email' name="email" type="text" value={props.formData.email} onChange={props.handleChange} />
+        <input placeholder='Full Name' id='fullname-input' name="full_name" type="text" value={props.formData.full_name} onChange={props.handleChange} />
+        <input id='username-input' placeholder='Username' name="username" type="text" value={props.formData.username} onChange={props.handleChange} />
+        <input id='password-input' placeholder='Password' name="password" type="password" value={props.formData.password} onChange={props.handleChange} />
+        <div>
+          <h1 onClick={() => {
+            props.handleSignUp();
+          }}>Sign Up</h1>
+        </div>
       </form>
-      <Link to="/login">Have An Account? Log In</Link>
+      <Link id='signup-link' to="/">Have An Account? <span id='signup'>Log In</span></Link>
     </div>
   );
 }

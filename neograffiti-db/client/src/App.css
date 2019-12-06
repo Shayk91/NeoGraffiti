@@ -1,13 +1,138 @@
-.user-image {
-  border-radius: 100%;
-  width: 50px;
-  height: 50px;
-  margin-left: 5%;
-  border: .5px solid gray;
-}
+/* {
+  font-family: 'Permanent Marker', cursive;
+font-family: 'Rock Salt', cursive;
+} */
 
 html {
   background: #FAFAFA;
+}
+
+.cg {
+  font-family: 'Rock Salt', cursive;
+}
+
+#lander-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  height: 100vh;
+}
+
+#lander {
+  justify-self: center;
+  font-family: 'Rock Salt', cursive;
+}
+
+.login-form {
+  border: 1px solid grey;
+  width: 50%;
+  text-align: center;
+  background: white;
+  height: 70vh;
+}
+
+.login-form:first-child {
+  margin-top: 5%;
+}
+
+#login-title {
+  margin-top: 15%;
+  margin-bottom: 15%;
+}
+
+.login-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 40vh;
+}
+
+.login-form form input {
+  width: 80%;
+  border: none;
+  background: #FAFAFA;
+  padding: 2% 0 2% 0;
+  border-radius: 5px;
+  margin: 2% 0 2% 0;
+}
+
+.login-form form div  {
+  background: lightskyblue;
+  width: 80%;
+  padding: 2% 0 2% 0;
+  border-radius: 5px;
+  margin-top: 10%;
+}
+
+.login-form form div h1 {
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  color: white;
+}
+
+#signup-link {
+  text-decoration: none;
+  color: grey;
+}
+
+#signup {
+  color: lightskyblue;
+  font-weight: bold;
+}
+
+#signup-page {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.signup-form {
+  border: 1px solid grey;
+  width: 400px;
+  text-align: center;
+  background: white;
+  height: 80vh;
+}
+
+.signup-form:first-child {
+  margin-top: 5%;
+}
+
+#signup-title {
+  margin-top: 15%;
+  margin-bottom: 15%;
+}
+
+.signup-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 50vh;
+}
+
+.signup-form form input {
+  width: 80%;
+  border: none;
+  background: #FAFAFA;
+  padding: 2% 0 2% 0;
+  border-radius: 5px;
+  margin: 2% 0 2% 0;
+}
+
+.signup-form form div  {
+  background: lightskyblue;
+  width: 80%;
+  padding: 2% 0 2% 0;
+  border-radius: 5px;
+  margin-top: 10%;
+}
+
+.signup-form form div h1 {
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  color: white;
 }
 
 #header {
@@ -42,6 +167,7 @@ html {
 
 #left h1 {
   margin-left: 2%;
+  font-size: 20px;
 }
 
 #right {
@@ -54,6 +180,14 @@ html {
 #profile {
   width: 40px;
   height: 40px;
+}
+
+.user-image {
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  margin-left: 5%;
+  border: .5px solid gray;
 }
 
 #right a {
@@ -73,18 +207,18 @@ html {
 
 #mainPage {
   border: 1px solid gray;
-  margin: 0 5% 0 15%;
+  margin: 0 5% 10% 15%;
   background: white;
 }
 
-#image-header {
+.image-header {
   border-bottom: 1px solid gray;
   display: flex;
   align-items: center;
   background: white;
 }
 
-#image-header h1 {
+.image-header h1 {
   margin-left: 5%;
 }
 
@@ -110,6 +244,10 @@ html {
   color: grey;
 }
 
+.time::first-letter  {
+  text-transform: capitalize;
+}
+
 .comment-display {
   display: flex;
   align-items: center;
@@ -117,6 +255,14 @@ html {
 
 .comment-display p {
   margin-bottom: .5%;
+}
+
+.comment-display p::first-letter {
+  text-transform: capitalize;
+}
+
+.single-comment p::first-letter {
+  text-transform: capitalize;
 }
 
 #comment-form {
@@ -202,10 +348,54 @@ html {
 .users-line {
   display: flex;
   align-items: center;
+  margin-bottom: 10%;
 }
 
-.users-line h1 {
-  margin-left: 2%;
+.users-line a {
+  margin-left: 5%;
+  text-decoration: none;
+  color: black;
+}
+
+#singlePage {
+  border: 1px solid gray;
+  margin: 10% 10% 0 10%;
+  background: white;
+  display: grid;
+  grid-template-columns: 60% 40%;
+  height: 100vh;
+}
+
+#single-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+#single-comments {
+  overflow: scroll;
+  height: 60vh;
+}
+
+#single-comments::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+#single-description {
+  display: flex;
+  align-items: center;
+}
+
+#single-description img {
+  width: 35px;
+  height: 35px;
+  margin-right: 2%;
+}
+
+#single-description h1 {
+  font-size: 16px;
+  margin-right: 2%;
 }
 
 #footer {

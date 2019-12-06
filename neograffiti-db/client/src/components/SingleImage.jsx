@@ -28,48 +28,66 @@ class SingleImage extends Component {
   render() {
     const { post } = this.state
     return (
-      <div>
-        {
-          post.user &&
-          <div>
-            <img className='user-image' src={post.user.image} alt={post.user.username} />
-            <h1>{post.user.username}</h1>
+      <div id='singlePage'>
+        <img id='single-image' src={post.image} alt={post.id} />
+        <div id='single-right'>
+          {
+            post.user &&
+            <div className='image-header'>
+              <img className='user-image' src={post.user.image} alt={post.user.username} />
+              <h1>{post.user.username}</h1>
+            </div>
+          }
+          <div id='single-comments'>
+            {
+              post.user &&
+              <div id='single-description'>
+                <img className='user-image' src={post.user.image} alt={post.user.username} />
+                <h1>{post.user.username}</h1>
+                <p>{post.content}</p>
+              </div>
+            }
+            {
+              post.comments &&
+              post.comments.map(comment => (
+                <div className='single-comment' key={comment.id}>
+                  {/* {
+                    comment.user && */}
+                  <div>
+                    {/* <img className='user-image' src={comment.user.image} alt={comment.user.username} />
+                      <h1>{comment.user.username}</h1> */}
+                    <p>{comment.content}</p>
+                  </div>
+                  {/* } */}
+                  {
+                    this.props.currentUser &&
+                      comment.user_id === this.props.currentUser.id ?
+                      <button onClick={() => this.handleCommentDelete(comment.id)}>Delete</button>
+                      :
+                      <></>
+                  }
+                </div>
+              ))
+            }
           </div>
-        }
-        <img src={post.image} alt={post.id} />
-        <p>{post.content}</p>
-        {
-          post.comments &&
-          post.comments.map(comment => (
-            <div key={comment.id}>
-              <p>{comment.content}</p>
-              {
-                this.props.currentUser &&
-                  comment.user_id === this.props.currentUser.id ?
-                  <button onClick={() => this.handleCommentDelete(comment.id)}>Delete</button>
-                  :
-                  <></>
-              }
-            </div>
-          ))
-        }
-        <p>{post.timedistance} ago</p>
-        <CreateComment
-          postId={this.state.post.id}
-          currentUser={this.props.currentUser}
-        />
-        {
-          this.props.currentUser &&
-            post.user_id === this.props.currentUser.id ?
-            <div>
-              <Link to={`/posts/${post.id}/edit`}>Edit</Link>
-              <button onClick={this.handleDelete}>Delete</button>
-            </div>
-            :
-            <>
-            </>
-        }
-      </div>
+          <p id='single-time' className='time'>{post.timedistance} ago</p>
+          <CreateComment
+            postId={this.state.post.id}
+            currentUser={this.props.currentUser}
+          />
+          {
+            this.props.currentUser &&
+              post.user_id === this.props.currentUser.id ?
+              <div>
+                <Link to={`/posts/${post.id}/edit`}>Edit</Link>
+                <button onClick={this.handleDelete}>Delete</button>
+              </div>
+              :
+              <>
+              </>
+          }
+        </div>
+      </div >
     )
   }
 }

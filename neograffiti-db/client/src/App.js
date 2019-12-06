@@ -15,7 +15,7 @@ import Profile from './components/Profile';
 import EditProfile from './components/EditProfile';
 import CreatePost from './components/CreatePost';
 import EditPost from './components/EditPost';
-import pic from './images/user.png';
+import pic from './images/default-profile.png';
 
 class App extends React.Component {
 
@@ -144,7 +144,7 @@ class App extends React.Component {
             )} />
             :
             <Route exact path='/' render={() => (
-              <div>
+              <div id='lander-page'>
                 <Lander />
                 <LogInForm
                   handleLogin={this.handleLogin}
@@ -217,21 +217,23 @@ class App extends React.Component {
             />
           </div>
         )} />
-        < Route path='/login' render={() => (
+        {/* < Route path='/login' render={() => (
           <LogInForm
             handleLogin={this.handleLogin}
             handleChange={this.authHandleChange}
             formData={this.state.authFormData}
             handleLoginButton={this.handleLoginButton}
           />
-        )} />
+        )} /> */}
         < Route path='/signup' render={() => (
-          <SignUpForm
-            handleSignUp={this.handleSignUp}
-            handleChange={this.authHandleChange}
-            formData={this.state.authFormData}
-            handleLoginButton={this.handleLoginButton}
-          />
+          <div id='signup-page'>
+            <SignUpForm
+              handleSignUp={this.handleSignUp}
+              handleChange={this.authHandleChange}
+              formData={this.state.authFormData}
+              handleLoginButton={this.handleLoginButton}
+            />
+          </div>
         )} />
         < Footer />
       </div >

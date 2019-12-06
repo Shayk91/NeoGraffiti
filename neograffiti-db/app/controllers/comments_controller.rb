@@ -7,12 +7,12 @@ class CommentsController < ApplicationController
     post = Post.find(params[:post_id])
     @comments = post.comments
 
-    render json: @comments
+    render json: @comments, include: :user
   end
 
   # GET /comments/1
   def show
-    render json: @comment
+    render json: @comment, include: :user
   end
 
   # POST /comments

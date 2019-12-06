@@ -3,19 +3,18 @@ import { Link } from 'react-router-dom';
 
 const LogInForm = (props) => {
   return (
-    <div className="auth-container">
-      <h2>NeoGraffiti</h2>
-      <form onSubmit={(e) => {
-        e.preventDefault();
-        props.handleLogin();
-      }} >
-        <p>Username:</p>
-        <input name="username" type="text" value={props.formData.username} onChange={props.handleChange} />
-        <p>Password:</p>
-        <input name="password" type="password" value={props.formData.password} onChange={props.handleChange} />
-        <button>Log In</button>
+    <div className="login-form">
+      <h2 className='cg' id='login-title'>ConcreteGallery</h2>
+      <form>
+        <input autoFocus id='username-input' name="username" placeholder='Username' type="text" value={props.formData.username} onChange={props.handleChange} />
+        <input id='password-input' name="password" placeholder='Password' type="password" value={props.formData.password} onChange={props.handleChange} />
+        <div>
+          <h1 onClick={() => {
+            props.handleLogin();
+          }}> Log In</h1>
+        </div>
       </form>
-      <Link to="/signup">Don't Have An Account? Sign Up</Link>
+      <Link id='signup-link' to="/signup">Don't Have An Account? <span id='signup'>Sign Up</span></Link>
     </div>
   );
 }

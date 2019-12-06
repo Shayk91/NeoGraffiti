@@ -8,7 +8,7 @@ export default function MainPage(props) {
       {
         props.posts.map(post => (
           <div id='mainPage' key={post.id}>
-            <div id='image-header'>
+            <div className='image-header'>
               <img className='user-image' src={post.user.image} alt={post.user.username} />
               <h1>{post.user.username}</h1>
             </div>

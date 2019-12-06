@@ -9,7 +9,7 @@ export default function Header(props) {
       <div id='left'>
         <Link to='/'><img id='logo' src={logo} alt='logo' /></Link>
         <div id='line'></div>
-        <h1>ConcreteGallery</h1>
+        <h1 className='cg'>ConcreteGallery</h1>
       </div>
       <div id='right'>
         {props.currentUser
