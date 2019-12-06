@@ -18,10 +18,10 @@ class CommentsController < ApplicationController
   # POST /comments
   def create
     @comment = Comment.new(comment_params)
-
     if @comment.save
-      render json: @comment, status: :created, location: @comment
+      render json: @comment, status: :created
     else
+      puts @comment.errors.full_messages
       render json: @comment.errors, status: :unprocessable_entity
     end
   end

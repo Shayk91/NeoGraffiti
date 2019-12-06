@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { withRouter, Route } from 'react-router-dom';
-import { loginUser, signUpUser, verifyUser, readAllPosts, createPost } from './services/api-helper'
+import { loginUser, signUpUser, verifyUser, readAllPosts, createPost, getAllUser } from './services/api-helper'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import LogInForm from './components/LogInForm'
@@ -15,11 +15,13 @@ import Profile from './components/Profile';
 import EditProfile from './components/EditProfile';
 import CreatePost from './components/CreatePost';
 import EditPost from './components/EditPost';
+import pic from './images/user.png';
 
 class App extends React.Component {
 
   state = {
     posts: [],
+    users: [],
     currentUser: null,
     postFormData: {
       image: '',
@@ -36,7 +38,7 @@ class App extends React.Component {
       password: '',
       email: '',
       full_name: '',
-      image: '',
+      image: pic,
       bio: '',
       user_id: ''
     }
@@ -47,11 +49,18 @@ class App extends React.Component {
     this.setState({
       posts
     })
+    const users = await getAllUser()
+    this.setState({
+      users
+    })
     const currentUser = await verifyUser();
     if (currentUser) {
       this.setState({ currentUser })
       this.setState({
         postFormData: {
+          user_id: this.state.currentUser.id
+        },
+        commentFormData: {
           user_id: this.state.currentUser.id
         }
       })
@@ -116,11 +125,21 @@ class App extends React.Component {
                   currentUser={this.state.currentUser}
                   handleLogout={this.handleLogout}
                 />
-                <MainPage posts={this.state.posts} />
-                <SideBar
-                  currentUser={this.state.currentUser}
-                />
-                <Suggestions />
+                <div id='main'>
+                  <MainPage
+                    posts={this.state.posts}
+                    currentUser={this.state.currentUser}
+                  />
+                  <div id='sideBar'>
+                    <SideBar
+                      currentUser={this.state.currentUser}
+                    />
+                    <Suggestions
+                      currentUser={this.state.currentUser}
+                      users={this.state.users}
+                    />
+                  </div>
+                </div>
               </div>
             )} />
             :
@@ -179,6 +198,7 @@ class App extends React.Component {
               handleLogout={this.handleLogout}
             />
             <CreatePost
+              currentUser={this.state.currentUser}
               formData={this.state.postFormData}
               handleChange={this.handleChange}
               handleSubmit={this.handleSubmit}
@@ -186,10 +206,16 @@ class App extends React.Component {
           </div>
         )} />
         <Route exact path='/accounts/:userId/edit' render={(props) => (
-          <EditProfile
-            currentUser={this.state.currentUser}
-            userId={props.match.params.userId}
-          />
+          <div>
+            <Header
+              currentUser={this.state.currentUser}
+              handleLogout={this.handleLogout}
+            />
+            <EditProfile
+              currentUser={this.state.currentUser}
+              userId={props.match.params.userId}
+            />
+          </div>
         )} />
         < Route path='/login' render={() => (
           <LogInForm

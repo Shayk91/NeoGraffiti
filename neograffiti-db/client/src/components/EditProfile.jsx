@@ -9,20 +9,23 @@ export default class EditProfile extends Component {
       username: '',
       image: '',
       bio: '',
-      email: ''
+      email: '',
+      password_digest: ''
     }
   }
 
   async componentDidMount() {
     const userId = parseInt(this.props.userId)
     const user = await getUser(userId)
+    console.log(user)
     this.setState({
       formData: {
         full_name: user.full_name,
         username: user.username,
         image: user.image,
         bio: user.bio,
-        email: user.email
+        email: user.email,
+        password_digest: user.password_digest
       }
     })
   }

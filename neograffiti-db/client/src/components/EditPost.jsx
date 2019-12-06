@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { readOnePost, updatePost } from '../services/api-helper'
+import { withRouter } from 'react-router-dom'
 
-export default class EditPost extends Component {
+class EditPost extends Component {
 
   state = {
     formData: {
@@ -38,7 +39,7 @@ export default class EditPost extends Component {
     const postId = parseInt(this.props.postId)
     const formData = this.state.formData
     await updatePost(postId, formData)
-    // this.props.history.push('/')
+    this.props.history.push('/')
   }
 
   render() {
@@ -65,3 +66,5 @@ export default class EditPost extends Component {
     )
   }
 }
+
+export default withRouter(EditPost)

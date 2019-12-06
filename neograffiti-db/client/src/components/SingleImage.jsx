@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { readOnePost } from '../services/api-helper'
-import { Link } from 'react-router-dom'
+import { readOnePost, destroyPost, destroyComment } from '../services/api-helper'
+import { Link, withRouter } from 'react-router-dom'
+import CreateComment from './CreateComment'
 
-export default class SingleImage extends Component {
+class SingleImage extends Component {
 
   state = {
     post: {}
@@ -13,6 +14,15 @@ export default class SingleImage extends Component {
     this.setState({
       post
     })
+  }
+
+  handleDelete = async () => {
+    await destroyPost(this.props.postId)
+    this.props.history.push("/")
+  }
+
+  handleCommentDelete = async (commentId) => {
+    await destroyComment(commentId)
   }
 
   render() {
@@ -31,16 +41,29 @@ export default class SingleImage extends Component {
         {
           post.comments &&
           post.comments.map(comment => (
-            <p key={comment.id}>{comment.content}</p>
+            <div key={comment.id}>
+              <p>{comment.content}</p>
+              {
+                this.props.currentUser &&
+                  comment.user_id === this.props.currentUser.id ?
+                  <button onClick={() => this.handleCommentDelete(comment.id)}>Delete</button>
+                  :
+                  <></>
+              }
+            </div>
           ))
         }
         <p>{post.timedistance} ago</p>
+        <CreateComment
+          postId={this.state.post.id}
+          currentUser={this.props.currentUser}
+        />
         {
           this.props.currentUser &&
             post.user_id === this.props.currentUser.id ?
             <div>
               <Link to={`/posts/${post.id}/edit`}>Edit</Link>
-              <button>Delete</button>
+              <button onClick={this.handleDelete}>Delete</button>
             </div>
             :
             <>
@@ -50,4 +73,4 @@ export default class SingleImage extends Component {
     )
   }
 }
-
+export default withRouter(SingleImage)

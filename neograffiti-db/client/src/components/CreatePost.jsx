@@ -1,13 +1,13 @@
 import React from 'react'
 import { createPost } from '../services/api-helper'
+import { withRouter } from 'react-router-dom'
 
-export default class CreatePost extends React.Component {
+class CreatePost extends React.Component {
 
   state = {
     formData: {
       image: '',
-      content: '',
-      user_id: ''
+      content: ''
     }
   }
 
@@ -24,7 +24,8 @@ export default class CreatePost extends React.Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     const formData = this.state.formData
-    await createPost(this.state.currentUser.id, formData)
+    const userId = this.props.currentUser.id
+    await createPost(userId, formData)
     this.props.history.push('/')
   }
 
@@ -51,3 +52,4 @@ export default class CreatePost extends React.Component {
     )
   }
 }
+export default withRouter(CreatePost)

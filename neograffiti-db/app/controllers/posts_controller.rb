@@ -39,7 +39,8 @@ class PostsController < ApplicationController
 
   def create_by_user
     user = User.find(params[:user_id])
-    post = Post.new(post_params)
+    post = user.posts.new(post_params)
+    # post = Post.new(post_params)
     if post.save
       render json: post, status: :created
     else

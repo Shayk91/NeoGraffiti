@@ -1,4 +1,213 @@
 .user-image {
-  width: 10%;
-  height: 10%;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  margin-left: 5%;
+  border: .5px solid gray;
+}
+
+html {
+  background: #FAFAFA;
+}
+
+#header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: .2px solid gray;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: white;
+}
+
+#left {
+  margin-left: 15%;
+  display: flex;
+  align-items: center;
+}
+
+#logo {
+  width: 40px;
+  height: 40px;
+}
+
+#line {
+  padding-top: 30px;
+  border-left: 1px solid gray;
+}
+
+#left a {
+  margin-right: 2%;
+}
+
+#left h1 {
+  margin-left: 2%;
+}
+
+#right {
+  margin-right: 10%;
+  justify-self: end;
+  display: flex;
+  align-items: center;
+}
+
+#profile {
+  width: 40px;
+  height: 40px;
+}
+
+#right a {
+  margin-right: 20%;
+}
+
+#right h1 {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+#main {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  margin-top: 10%;
+}
+
+#mainPage {
+  border: 1px solid gray;
+  margin: 0 5% 0 15%;
+  background: white;
+}
+
+#image-header {
+  border-bottom: 1px solid gray;
+  display: flex;
+  align-items: center;
+  background: white;
+}
+
+#image-header h1 {
+  margin-left: 5%;
+}
+
+#mainImage img {
+  width: 100%;
+}
+
+.bottom {
+  margin-left: 2%;
+}
+
+.bottom a {
+  color: grey;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.time {
+  color: grey;
+}
+
+.comment-display {
+  display: flex;
+  align-items: center;
+}
+
+.comment-display p {
+  margin-bottom: .5%;
+}
+
+#comment-form {
+  display: flex;
+  border-top: 1px solid gray;
+}
+
+#comment-input {
+  width: 100%;
+  border: none;
+}
+
+#comment-form p {
+  padding-right: 2%;
+  cursor: pointer;
+  color: lightskyblue;
+  font-weight: bold;
+}
+
+#comment-input::placeholder {
+  padding-left: 2%;
+}
+
+#sideBar {
+  position: fixed;
+  right: 0;
+  margin-right: 10%;
+}
+
+#inside-sidebar {
+  display: flex;
+  margin-right: 15%;
+  width: 80%;
+  margin-bottom: 10%;
+}
+
+#sidebar-image {
+  align-self: center;
+  border-radius: 100%;
+  width: 80px;
+  height: 80px;
+  margin-left: 5%;
+  border: .5px solid gray;
+  margin-right: 2%;
+}
+
+#names {
+  align-self: center;
+  margin-left: 2%;
+}
+
+#inside-sidebar h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+#bottom-name {
+  font-weight: 400;
+}
+
+#suggestions {
+  border: .5px solid gray;
+  width: 100%;
+  padding-bottom: 20%;
+  padding-right: 20%;
+  padding-left: 10px;
+  background: white;
+}
+
+#suggestion-title {
+  margin-bottom: 10%;
+  color: grey;
+}
+
+#suggestions h1 {
+  font-size: 20px;
+}
+
+#users img {
+  margin-right: 5%;
+}
+
+.users-line {
+  display: flex;
+  align-items: center;
+}
+
+.users-line h1 {
+  margin-left: 2%;
+}
+
+#footer {
+  text-align: center;
 }

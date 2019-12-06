@@ -35,8 +35,15 @@ export const createPost = async (userId, data) => {
   return resp.data
 }
 
-export const createComment = async (postId, data) => {
+export const createComment = async (userId, postId, data) => {
+  data.user_id = userId
+  data.post_id = postId
   const resp = await api.post(`/posts/${postId}/comments`, { comment: data })
+  return resp.data
+}
+
+export const getAllUser = async () => {
+  const resp = await api.get('/users/')
   return resp.data
 }
 
@@ -66,7 +73,7 @@ export const readOnePost = async (postId) => {
 }
 
 export const updateUser = async (userId, data) => {
-  const resp = await api.patch(`/users/${userId}`, { user: data })
+  const resp = await api.put(`/users/${userId}`, { user: data })
   return resp.data
 }
 
