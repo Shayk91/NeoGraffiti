@@ -16,6 +16,7 @@ import EditProfile from './components/EditProfile';
 import CreatePost from './components/CreatePost';
 import EditPost from './components/EditPost';
 import pic from './images/default-profile.png';
+import EditPassword from './components/EditPassword';
 
 class App extends React.Component {
 
@@ -63,6 +64,17 @@ class App extends React.Component {
         commentFormData: {
           user_id: this.state.currentUser.id
         }
+      })
+    }
+  }
+
+  async componentDidUpdate(prevProps, prevState) {
+    console.log('outside')
+    if (prevState.posts.length !== this.state.posts.length) {
+      console.log('inside')
+      const posts = await readAllPosts()
+      this.setState({
+        posts
       })
     }
   }
@@ -143,17 +155,29 @@ class App extends React.Component {
               </div>
             )} />
             :
-            <Route exact path='/' render={() => (
-              <div id='lander-page'>
-                <Lander />
-                <LogInForm
-                  handleLogin={this.handleLogin}
-                  handleChange={this.authHandleChange}
-                  formData={this.state.authFormData}
-                  handleLoginButton={this.handleLoginButton}
-                />
-              </div>
-            )} />
+            <>
+              <Route exact path='/' render={() => (
+                <div id='lander-page'>
+                  <Lander />
+                  <LogInForm
+                    handleLogin={this.handleLogin}
+                    handleChange={this.authHandleChange}
+                    formData={this.state.authFormData}
+                    handleLoginButton={this.handleLoginButton}
+                  />
+                </div>
+              )} />
+              < Route path='/signup' render={() => (
+                <div id='signup-page'>
+                  <SignUpForm
+                    handleSignUp={this.handleSignUp}
+                    handleChange={this.authHandleChange}
+                    formData={this.state.authFormData}
+                    handleLoginButton={this.handleLoginButton}
+                  />
+                </div>
+              )} />
+            </>
         }
         <Route exact path='/posts/:postId' render={(props) => (
           <div>
@@ -211,10 +235,26 @@ class App extends React.Component {
               currentUser={this.state.currentUser}
               handleLogout={this.handleLogout}
             />
-            <EditProfile
+            <div id='edit-profile-page'>
+              <EditProfile
+                currentUser={this.state.currentUser}
+                userId={props.match.params.userId}
+              />
+            </div>
+          </div>
+        )} />
+        <Route exact path='/accounts/:userId/edit/password' render={(props) => (
+          <div>
+            <Header
               currentUser={this.state.currentUser}
-              userId={props.match.params.userId}
+              handleLogout={this.handleLogout}
             />
+            <div id='edit-profile-page'>
+              <EditPassword
+                currentUser={this.state.currentUser}
+                userId={props.match.params.userId}
+              />
+            </div>
           </div>
         )} />
         {/* < Route path='/login' render={() => (
@@ -225,16 +265,7 @@ class App extends React.Component {
             handleLoginButton={this.handleLoginButton}
           />
         )} /> */}
-        < Route path='/signup' render={() => (
-          <div id='signup-page'>
-            <SignUpForm
-              handleSignUp={this.handleSignUp}
-              handleChange={this.authHandleChange}
-              formData={this.state.authFormData}
-              handleLoginButton={this.handleLoginButton}
-            />
-          </div>
-        )} />
+
         < Footer />
       </div >
     )

@@ -11,7 +11,7 @@ class PostsController < ApplicationController
       post
     end
 
-    render json: @posts, include: [:user, :comments]
+    render json: @posts, include: [:user, { comments: { include: :user } } ]
   end
 
   def index_by_user

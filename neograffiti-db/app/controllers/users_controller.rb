@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
   before_action :authorize_request, except: [:create, :index, :show, :update]
+  # before_action :remove_password_params_if_blank, only: [:update]
 
   # GET /users
   def index
@@ -28,7 +29,7 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    if @user.update(user_params )
+    if @user.update_attributes(user_params )
       render json: @user
     else
       render json: @user.errors, status: :unprocessable_entity
@@ -52,6 +53,10 @@ class UsersController < ApplicationController
     end
     
     def user_params
-      params.require(:user).permit(:username, :email, :password, :full_name, :image, :bio)
+      new_params = params.require(:user).permit(:username, :email, :password, :full_name, :image, :bio)
+      # if new_params[:password].blank?
+      #   new_params.delete(:password)
+      # end
+      new_params
     end
 end

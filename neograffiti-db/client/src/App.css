@@ -3,6 +3,67 @@
 font-family: 'Rock Salt', cursive;
 } */
 
+input:focus {
+  outline: none;
+}
+
+textarea {
+  resize: none;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+button:focus{
+  outline: none;
+}
+
+#menu {
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+}
+
+#modal {
+  position: absolute;
+  top: 25%;
+  right: 15%;
+  background: white;
+  border: 1px solid grey;
+  z-index: 10;
+  height: 100px;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+
+#modal p {
+  position: absolute;
+  top: 1%;
+  right: 10%;
+  margin: 0;
+  font-weight: 800;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#modal a {
+  width: 100%;
+  
+}
+
+#modal button {
+  width: 80%;
+  border: none;
+  font-weight: 600;
+  font-size: 20px;
+  cursor: pointer;
+}
+
 html {
   background: #FAFAFA;
 }
@@ -44,7 +105,7 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 40vh;
+  height: 30vh;
 }
 
 .login-form form input {
@@ -62,13 +123,18 @@ html {
   padding: 2% 0 2% 0;
   border-radius: 5px;
   margin-top: 10%;
+  cursor: pointer;
 }
 
-.login-form form div h1 {
+.buttons {
+  border: none;
+  background: none;
   font-size: 16px;
   padding: 0;
   margin: 0;
   color: white;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 #signup-link {
@@ -92,7 +158,7 @@ html {
   width: 400px;
   text-align: center;
   background: white;
-  height: 80vh;
+  height: 90vh;
 }
 
 .signup-form:first-child {
@@ -126,13 +192,7 @@ html {
   padding: 2% 0 2% 0;
   border-radius: 5px;
   margin-top: 10%;
-}
-
-.signup-form form div h1 {
-  font-size: 16px;
-  padding: 0;
-  margin: 0;
-  color: white;
+  cursor: pointer;
 }
 
 #header {
@@ -178,8 +238,8 @@ html {
 }
 
 #profile {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
 }
 
 .user-image {
@@ -216,14 +276,22 @@ html {
   display: flex;
   align-items: center;
   background: white;
+  position: relative;
 }
 
-.image-header h1 {
-  margin-left: 5%;
+.image-header a  {
+  margin-left: 3%;
+  text-decoration: none;
+  color: black;
+}
+
+#mainImage {
+  height: 70vh;
 }
 
 #mainImage img {
   width: 100%;
+  height: 100%;
 }
 
 .bottom {
@@ -236,16 +304,25 @@ html {
   font-weight: bold;
 }
 
+.description-user {
+  color: black !important;
+  text-decoration: none;
+}
+
 .username {
   font-weight: bold;
+  margin-right: 1%;
 }
 
 .time {
   color: grey;
+  font-size: 12px;
+  text-transform: capitalize;
 }
 
-.time::first-letter  {
-  text-transform: capitalize;
+.time-link {
+  font-weight: 400 !important;
+  text-decoration: none;
 }
 
 .comment-display {
@@ -253,16 +330,23 @@ html {
   align-items: center;
 }
 
+.comment-display a {
+  margin-right: 1%;
+  align-self: center;
+  margin-bottom: .5%;
+}
+
 .comment-display p {
   margin-bottom: .5%;
 }
 
-.comment-display p::first-letter {
-  text-transform: capitalize;
+#single-right {
+  border-left: .5px solid grey;
 }
 
-.single-comment p::first-letter {
-  text-transform: capitalize;
+#single-right a {
+  margin-left: 2%;
+  margin-right: 2%;
 }
 
 #comment-form {
@@ -273,17 +357,35 @@ html {
 #comment-input {
   width: 100%;
   border: none;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-top: 20px;
+  font-size: 16px;
 }
 
-#comment-form p {
+.post-submit {
+  padding-right: 2%;
+  color: lightskyblue;
+  font-weight: bold;
+  border: none;
+  font-size: 14px;
+  opacity: .5;
+  padding-bottom: 2%;
+}
+
+.post-filled {
   padding-right: 2%;
   cursor: pointer;
   color: lightskyblue;
   font-weight: bold;
+  border: none;
+  font-size: 14px;
+  padding-bottom: 2%;
 }
 
 #comment-input::placeholder {
-  padding-left: 2%;
+  font-weight: 600;
+  font-size: 14px;
 }
 
 #sideBar {
@@ -295,8 +397,12 @@ html {
 #inside-sidebar {
   display: flex;
   margin-right: 15%;
-  width: 80%;
+  width: 100%;
   margin-bottom: 10%;
+}
+
+#image-user {
+  margin-right: 5%;
 }
 
 #sidebar-image {
@@ -312,6 +418,11 @@ html {
 #names {
   align-self: center;
   margin-left: 2%;
+}
+
+#names a {
+  text-decoration: none;
+  color: black;
 }
 
 #inside-sidebar h1 {
@@ -359,23 +470,25 @@ html {
 
 #singlePage {
   border: 1px solid gray;
-  margin: 10% 10% 0 10%;
+  margin: 10% 10% 10% 10%;
   background: white;
   display: grid;
-  grid-template-columns: 60% 40%;
-  height: 100vh;
+  grid-template-columns: 65% 35%;
+  height: 105vh;
 }
 
 #single-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
+}
+
+#single-time {
+  margin-left: 3%;
 }
 
 #single-comments {
   overflow: scroll;
-  height: 60vh;
+  height: 65vh;
 }
 
 #single-comments::-webkit-scrollbar {
@@ -385,6 +498,7 @@ html {
 #single-description {
   display: flex;
   align-items: center;
+  margin-top: 3%;
 }
 
 #single-description img {
@@ -396,6 +510,291 @@ html {
 #single-description h1 {
   font-size: 16px;
   margin-right: 2%;
+}
+
+#profile-page {
+  min-height: 100vh;
+}
+
+#top-profile {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  height: 50vh;
+  margin-top: 5%;
+}
+
+#top-profile img {
+  width: 150px;
+  height: 150px;
+  justify-self: end;
+  align-self: center;
+}
+
+#profile-info {
+  display: grid;
+  grid-template-rows: 20% 20% 30%;
+  align-self: center;
+  margin-top: 10%;
+  margin-left: 10%;
+}
+
+#profile-first {
+  align-self: center;
+  padding-bottom: 2%;
+  display: grid;
+  grid-template-columns: 20% 40%;
+  align-items: center;
+}
+
+#profile-first a {
+  text-decoration: none;
+  color: black;
+  border: .5px solid grey;
+  padding: 3%;
+  margin: 0 2% 0 2%;
+  border-radius: 5px;
+  background: white;
+  font-weight: 600;
+}
+
+#profile-first h1 {
+  margin: 0;
+  margin-bottom: 3%;
+  font-weight: 400;
+}
+
+#profile-second {
+  margin: 0;
+  margin-bottom: 3%;
+  padding-bottom: 2%;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+#profile-second::first-letter {
+  font-weight: bold;
+}
+
+#profile-third {
+  padding-bottom: 2%;
+  width: 60%;
+}
+
+#profile-third h2 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+#profile-third p {
+  font-size: 18px;
+}
+
+#bottom-profile {
+  text-align: center;
+  display: grid;
+}
+
+#bottom-profile h2 {
+  border-top: .5px solid grey;
+  width: 80%;
+  justify-self: center;
+  padding-top: 2%;
+}
+
+#profile-posts {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.post-div {
+  margin: 8%;
+}
+
+#profile-posts img {
+  width: 100%;
+  margin: 5%;
+  height: 40vh;
+  object-position: center;
+}
+
+#create-post {
+  margin-top: 5%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#show-picture {
+  border: .5px solid grey;
+  width: 90%;
+  height: 80vh;
+  justify-self: center;
+  align-self: center;
+  margin-left: 20%;
+}
+
+#show-picture img {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 0;
+  margin: 0;
+}
+
+#create-post form {
+  justify-self: center;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid grey;
+  width: 60%;
+  background: white;
+  height: 80vh;
+  align-items: center;
+  justify-content: center;
+}
+#create-post form h1 {
+  margin-top: -20%;
+  margin-bottom: 20%;
+}
+
+#create-post form input {
+  width: 80%;
+  border: none;
+  background: #FAFAFA;
+  padding: 2% 0 2% 0;
+  border-radius: 5px;
+  margin: 2% 0 2% 0;
+}
+
+#create-post form button {
+  background: lightskyblue;
+  width: 80%;
+  padding: 2% 0 2% 0;
+  border-radius: 5px;
+  margin-top: 10%;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+#edit-profile-page {
+  display: grid;
+  justify-content: center;
+  margin-top: 5%;
+  grid-template-columns: 1fr;
+  height: 100vh;
+}
+
+#edit-profile {
+  display: grid;
+  grid-template-columns: 30% 50%;
+  width: 80%;
+  border: .5px solid grey;
+  justify-self: center;
+  align-self: center;
+  height: 80vh;
+  background: white;
+}
+
+.selected-edit {
+  border-left: 4px solid black;
+  padding-left: 10px;
+  cursor: pointer;
+}
+
+.unselected-edit {
+  padding-left: 14px;
+  cursor: pointer;
+}
+
+#edit-left {
+  border-right: .5px solid grey;
+}
+
+#edit-left h1{
+  font-size: 20px;
+  margin-left: 10%;
+  margin-top: 10%;
+}
+
+#edit-right {
+  margin-left: 10%;
+}
+
+#edit-user {
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+
+#edit-user img {
+  justify-self: end;
+  align-self: center;
+}
+
+#edit-user h1 {
+  margin-left: 5%;
+  font-weight: 600;
+}
+
+#edit-form {
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+
+#edit-form p {
+  justify-self: end;
+  font-weight: 600;
+}
+
+#edit-form input {
+  margin-left: 5%;
+  border: .5px solid grey;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  padding-left: 3%;
+  border-radius: 5px;
+}
+
+#edit-form textarea {
+  margin-left: 5%;
+  padding-left: 3%;
+  padding-top: 3%;
+  margin-top: 5%;
+  border-radius: 5px;
+  border: .5px solid grey;
+  resize: vertical;
+}
+
+#edit-form button {
+  margin-left: 5%;
+  border: .5px solid grey;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  padding-left: 3%;
+  border-radius: 5px;
+  background: lightskyblue;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.edit-links {
+  text-decoration: none;
+  color: black;
+}
+
+#password-right {
+  text-align: end;
 }
 
 #footer {

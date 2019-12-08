@@ -44,11 +44,17 @@ class CreateComment extends React.Component {
       <div>
         {
           this.state.formData &&
-          <form id='comment-form' >
-            <input id='comment-input' name="content" type="text" placeholder='Add A Comment...' value={this.state.formData.content} onChange={this.handleChange} />
-            <p onClick={
-              this.handleSubmit
-            }>Post</p>
+          <form id='comment-form' onSubmit={
+            this.handleSubmit
+          } >
+            <textarea id='comment-input' name="content" type="text" placeholder='Add A Comment...' value={this.state.formData.content} onChange={this.handleChange} />
+            {
+              this.state.formData.content &&
+                this.state.formData.content.length > 0 ?
+                <button className='post-filled'>Post</button>
+                :
+                <button disabled className='post-submit'>Post</button>
+            }
           </form>
         }
       </div>

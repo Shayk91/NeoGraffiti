@@ -1,5 +1,5 @@
 import React from 'react'
-import { createPost } from '../services/api-helper'
+import { createPost, readAllComments } from '../services/api-helper'
 import { withRouter } from 'react-router-dom'
 
 class CreatePost extends React.Component {
@@ -31,20 +31,21 @@ class CreatePost extends React.Component {
 
   render() {
     return (
-      <div>
-        {
-          this.state.formData.image &&
-          <img className='user-image' src={this.state.formData.image} alt={this.state.formData.id} />
-        }
+      <div id='create-post'>
+        <div id='show-picture'>
+          {
+            this.state.formData.image &&
+            <img className='user-image' src={this.state.formData.image} alt={this.state.formData.id} />
+          }
+        </div>
         {
           this.state.formData &&
           <form onSubmit={
             this.handleSubmit
           }>
-            <p>Image:</p>
-            <input name="image" type="text" value={this.state.formData.image} onChange={this.handleChange} />
-            <p>Description:</p>
-            <input name="content" type="text" value={this.state.formData.content} onChange={this.handleChange} />
+            <h1>New Post</h1>
+            <input placeholder='Image Url' name="image" type="text" value={this.state.formData.image} onChange={this.handleChange} />
+            <input placeholder='Write A Caption...' name="content" type="text" value={this.state.formData.content} onChange={this.handleChange} />
             <button>Share</button>
           </form>
         }
