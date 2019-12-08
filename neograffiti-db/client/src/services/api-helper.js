@@ -89,7 +89,7 @@ export const updateComment = async (commentId, data) => {
 }
 
 export const destroyUser = async (userId) => {
-  const resp = await api.delete(`/posts/${userId}`)
+  const resp = await api.delete(`/users/${userId}`)
   return resp.data
 }
 

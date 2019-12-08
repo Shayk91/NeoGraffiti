@@ -27,6 +27,7 @@ export default class Profile extends Component {
   }
 
   render() {
+    window.scrollTo(0, 0)
     const { user } = this.state
     return (
       <div id='profile-page'>
@@ -50,7 +51,12 @@ export default class Profile extends Component {
                       </>
                   }
                 </div>
-                <h2 id='profile-second'>{user.posts.length} Posts</h2>
+                {
+                  user.posts.length === 1 ?
+                    <h2 id='profile-second'>{user.posts.length} Post</h2>
+                    :
+                    <h2 id='profile-second'>{user.posts.length} Posts</h2>
+                }
                 <div id='profile-third'>
                   <h2>{user.full_name}</h2>
                   <p>{user.bio}</p>

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { getUser, updateUser } from '../services/api-helper'
-import { Link } from 'react-router-dom'
+import { getUser, updateUser, destroyUser } from '../services/api-helper'
+import { Link, withRouter } from 'react-router-dom'
 
-export default class EditProfile extends Component {
+class EditProfile extends Component {
 
   state = {
     user: {},
@@ -25,8 +25,7 @@ export default class EditProfile extends Component {
         username: user.username,
         image: user.image,
         bio: user.bio,
-        email: user.email,
-        password_digest: user.password_digest
+        email: user.email
       }
     })
   }
@@ -47,6 +46,11 @@ export default class EditProfile extends Component {
     const formData = this.state.formData
     await updateUser(userId, formData)
     // this.props.history.push(`/accounts/${this.props.userId}`)
+  }
+
+  handleDelete = async () => {
+    await destroyUser(this.props.userId)
+    this.props.history.push("/")
   }
 
   render() {
@@ -78,7 +82,7 @@ export default class EditProfile extends Component {
             <textarea name="bio" value={this.state.formData.bio} onChange={this.handleChange} />
             <p>Email</p>
             <input name="email" type="email" value={this.state.formData.email} onChange={this.handleChange} />
-            <div></div>
+            <h6 onClick={this.handleDelete}>Delete</h6>
             <button>Submit</button>
           </form>
         </div>
@@ -86,3 +90,4 @@ export default class EditProfile extends Component {
     )
   }
 }
+export default withRouter(EditProfile)

@@ -6,7 +6,7 @@ const SignUpForm = (props) => {
   return (
     <div className="signup-form">
       <h2 className='cg' id='signup-title'>ConcreteGallery</h2>
-      <form onClick={(e) => {
+      <form onSubmit={(e) => {
         e.preventDefault()
         props.handleSignUp();
       }} >

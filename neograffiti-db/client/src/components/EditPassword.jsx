@@ -64,7 +64,7 @@ export default class EditPassword extends Component {
             <p>New Password</p>
             <input name="password" type="password" value={this.state.formData.password} onChange={this.handleChange} />
             <p id='password-right'>Confirm New <span>Password</span></p>
-            <input name="new_password" type="text" value={this.state.formData.new_password} onChange={this.handleChange} />
+            <input name="new_password" type="password" value={this.state.formData.new_password} onChange={this.handleChange} />
             <div></div>
             <button>Change Password</button>
           </form>

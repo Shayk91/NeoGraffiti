@@ -31,7 +31,7 @@ button:focus{
   right: 15%;
   background: white;
   border: 1px solid grey;
-  z-index: 10;
+  z-index: 1;
   height: 100px;
   width: 100px;
   display: flex;
@@ -90,6 +90,7 @@ html {
   text-align: center;
   background: white;
   height: 70vh;
+  justify-self: center;
 }
 
 .login-form:first-child {
@@ -203,6 +204,7 @@ html {
   top: 0;
   width: 100%;
   background: white;
+  z-index: 10;
 }
 
 #left {
@@ -450,6 +452,11 @@ html {
 
 #suggestions h1 {
   font-size: 20px;
+}
+
+#users {
+  height: 30vh;
+  overflow: scroll;
 }
 
 #users img {
@@ -800,3 +807,32 @@ html {
 #footer {
   text-align: center;
 }
+
+.fling-minislide {
+  width: 500px;
+  height: 500px;
+  overflow: hidden;
+  position: relative;
+}
+
+.fling-minislide h1 {
+  position: absolute;
+  top: -30px;
+  left: 70px;
+  color: #E004FF;
+  text-shadow: 4px 4px black;
+}
+
+.fling-minislide img {
+  position: absolute;
+  animation: fling-minislide 40s infinite;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes fling-minislide {25%{opacity:1;} 40%{opacity:0;}}
+.fling-minislide img:nth-child(4){animation-delay:0s;}
+.fling-minislide img:nth-child(3){animation-delay:10s;}
+.fling-minislide img:nth-child(2){animation-delay:20s;}
+.fling-minislide img:nth-child(1){animation-delay:30s;}
