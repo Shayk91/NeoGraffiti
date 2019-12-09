@@ -46,6 +46,7 @@ class App extends React.Component {
   }
 
   async componentDidMount() {
+    // await this.getAllPosts()
     const posts = await readAllPosts()
     this.setState({
       posts
@@ -78,6 +79,14 @@ class App extends React.Component {
       })
     }
   }
+
+  // getAllPosts = async () => {
+  //   const posts = await readAllPosts();
+  //   posts.sort(function (a, b) {
+  //     return new Date(b.createdAt) - new Date(a.createdAt)
+  //   })
+  //   this.setState({ posts })
+  // }
 
   handleChange = (e) => {
     const { name, value } = e.target;

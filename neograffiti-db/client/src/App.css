@@ -9,6 +9,7 @@ input:focus {
 
 textarea {
   resize: none;
+  background: #FAFAFA;
 }
 
 textarea:focus {
@@ -279,12 +280,17 @@ html {
   align-items: center;
   background: white;
   position: relative;
+  height: 15vh;
 }
 
 .image-header a  {
   margin-left: 3%;
   text-decoration: none;
   color: black;
+}
+
+.image-header h1 {
+  font-size: 25px;
 }
 
 #mainImage {
@@ -362,6 +368,7 @@ html {
   padding-bottom: 20px;
   padding-left: 20px;
   padding-top: 20px;
+  background: #FAFAFA;
   font-size: 16px;
 }
 
@@ -766,6 +773,7 @@ html {
   padding-top: 3%;
   padding-bottom: 3%;
   padding-left: 3%;
+  background: #FAFAFA;
   border-radius: 5px;
 }
 
@@ -804,23 +812,19 @@ html {
   text-align: end;
 }
 
-#footer {
-  text-align: center;
-}
-
 .fling-minislide {
-  width: 500px;
-  height: 500px;
+  width: 600px;
+  height: 600px;
   overflow: hidden;
   position: relative;
+  margin-left: 12%;
 }
 
 .fling-minislide h1 {
   position: absolute;
   top: -30px;
-  left: 70px;
+  left: 120px;
   color: #E004FF;
-  text-shadow: 4px 4px black;
 }
 
 .fling-minislide img {
@@ -836,3 +840,8 @@ html {
 .fling-minislide img:nth-child(3){animation-delay:10s;}
 .fling-minislide img:nth-child(2){animation-delay:20s;}
 .fling-minislide img:nth-child(1){animation-delay:30s;}
+
+#footer {
+  text-align: center;
+  font-size: 16px;
+}
