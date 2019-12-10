@@ -58,9 +58,9 @@ export default class Profile extends Component {
                 </div>
                 {
                   user.posts.length === 1 ?
-                    <h2 id='profile-second'>{user.posts.length} Post</h2>
+                    <h2 id='profile-second'><span>{user.posts.length}</span> Post</h2>
                     :
-                    <h2 id='profile-second'>{user.posts.length} Posts</h2>
+                    <h2 id='profile-second'><span>{user.posts.length}</span> Posts</h2>
                 }
                 <div id='profile-third'>
                   <h2>{user.full_name}</h2>

@@ -2,6 +2,13 @@
   font-family: 'Permanent Marker', cursive;
 font-family: 'Rock Salt', cursive;
 } */
+#single-right textarea {
+  background: white;
+}
+
+#mainPage textarea {
+  background: white;
+}
 
 input:focus {
   outline: none;
@@ -31,7 +38,8 @@ button:focus{
   top: 25%;
   right: 15%;
   background: white;
-  border: 1px solid grey;
+  border: 1px solid lightgray;
+  border-radius: 4px;
   z-index: 1;
   height: 100px;
   width: 100px;
@@ -69,6 +77,10 @@ html {
   background: #FAFAFA;
 }
 
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
 .cg {
   font-family: 'Rock Salt', cursive;
 }
@@ -86,7 +98,8 @@ html {
 }
 
 .login-form {
-  border: 1px solid grey;
+  border: 1px solid lightgray;
+  border-radius: 4px;
   width: 50%;
   text-align: center;
   background: white;
@@ -141,7 +154,7 @@ html {
 
 #signup-link {
   text-decoration: none;
-  color: grey;
+  color: lightgray;
 }
 
 #signup {
@@ -156,7 +169,8 @@ html {
 }
 
 .signup-form {
-  border: 1px solid grey;
+  border: 1px solid lightgray;
+  border-radius: 4px;
   width: 400px;
   text-align: center;
   background: white;
@@ -200,7 +214,7 @@ html {
 #header {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border-bottom: .2px solid gray;
+  border-bottom: .4px solid lightgray;
   position: fixed;
   top: 0;
   width: 100%;
@@ -221,7 +235,7 @@ html {
 
 #line {
   padding-top: 30px;
-  border-left: 1px solid gray;
+  border-left: 1px solid lightgray;
 }
 
 #left a {
@@ -250,7 +264,7 @@ html {
   width: 50px;
   height: 50px;
   margin-left: 5%;
-  border: .5px solid gray;
+  border: .5px solid lightgray;
 }
 
 #right a {
@@ -269,13 +283,14 @@ html {
 }
 
 #mainPage {
-  border: 1px solid gray;
+  border: 1px solid lightgray;
+  border-radius: 4px;
   margin: 0 5% 10% 15%;
   background: white;
 }
 
 .image-header {
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid lightgray;
   display: flex;
   align-items: center;
   background: white;
@@ -307,7 +322,7 @@ html {
 }
 
 .bottom a {
-  color: grey;
+  color: lightgray;
   text-decoration: none;
   font-weight: bold;
 }
@@ -323,8 +338,8 @@ html {
 }
 
 .time {
-  color: grey;
-  font-size: 12px;
+  color: lightgray;
+  font-size: 14px;
   text-transform: capitalize;
 }
 
@@ -349,7 +364,7 @@ html {
 }
 
 #single-right {
-  border-left: .5px solid grey;
+  border-left: .5px solid lightgray;
 }
 
 #single-right a {
@@ -359,7 +374,7 @@ html {
 
 #comment-form {
   display: flex;
-  border-top: 1px solid gray;
+  border-top: 1px solid lightgray;
 }
 
 #comment-input {
@@ -420,7 +435,7 @@ html {
   width: 80px;
   height: 80px;
   margin-left: 5%;
-  border: .5px solid gray;
+  border: .5px solid lightgray;
   margin-right: 2%;
 }
 
@@ -444,17 +459,18 @@ html {
 }
 
 #suggestions {
-  border: .5px solid gray;
+  border: .5px solid lightgray;
+  border-radius: 4px;
   width: 100%;
-  padding-bottom: 20%;
+  padding-bottom: 10%;
   padding-right: 20%;
-  padding-left: 10px;
+  padding-left: 30px;
   background: white;
 }
 
 #suggestion-title {
   margin-bottom: 10%;
-  color: grey;
+  color: lightgray;
 }
 
 #suggestions h1 {
@@ -482,8 +498,18 @@ html {
   color: black;
 }
 
+.users-line a img {
+  width: 40px;
+  height: 40px;
+}
+
+.users-line a h1 {
+  font-size: 16px !important;
+}
+
 #singlePage {
-  border: 1px solid gray;
+  border: 1px solid lightgray;
+  border-radius: 4px;
   margin: 10% 10% 10% 10%;
   background: white;
   display: grid;
@@ -563,7 +589,7 @@ html {
 #profile-first a {
   text-decoration: none;
   color: black;
-  border: .5px solid grey;
+  border: .5px solid lightgray;
   padding: 3%;
   margin: 0 2% 0 2%;
   border-radius: 5px;
@@ -585,7 +611,7 @@ html {
   font-size: 20px;
 }
 
-#profile-second::first-letter {
+#profile-second span {
   font-weight: bold;
 }
 
@@ -610,7 +636,7 @@ html {
 }
 
 #bottom-profile h2 {
-  border-top: .5px solid grey;
+  border-top: .5px solid lightgray;
   width: 80%;
   justify-self: center;
   padding-top: 2%;
@@ -642,7 +668,7 @@ html {
 }
 
 #show-picture {
-  border: .5px solid grey;
+  border: .5px solid lightgray;
   width: 90%;
   height: 80vh;
   justify-self: center;
@@ -663,7 +689,8 @@ html {
   align-self: center;
   display: flex;
   flex-direction: column;
-  border: 1px solid grey;
+  border: 1px solid lightgray;
+  border-radius: 4px;
   width: 60%;
   background: white;
   height: 80vh;
@@ -708,7 +735,8 @@ html {
   display: grid;
   grid-template-columns: 30% 50%;
   width: 80%;
-  border: .5px solid grey;
+  border: .5px solid lightgray;
+  border-radius: 4px;
   justify-self: center;
   align-self: center;
   height: 80vh;
@@ -727,7 +755,7 @@ html {
 }
 
 #edit-left {
-  border-right: .5px solid grey;
+  border-right: .5px solid lightgray;
 }
 
 #edit-left h1{
@@ -767,7 +795,7 @@ html {
 
 #edit-form input {
   margin-left: 5%;
-  border: .5px solid grey;
+  border: .5px solid lightgray;
   margin-bottom: 5%;
   margin-top: 5%;
   padding-top: 3%;
@@ -783,13 +811,13 @@ html {
   padding-top: 3%;
   margin-top: 5%;
   border-radius: 5px;
-  border: .5px solid grey;
+  border: .5px solid lightgray;
   resize: vertical;
 }
 
 #edit-form button {
   margin-left: 5%;
-  border: .5px solid grey;
+  border: .5px solid lightgray;
   margin-bottom: 5%;
   margin-top: 5%;
   padding-top: 3%;

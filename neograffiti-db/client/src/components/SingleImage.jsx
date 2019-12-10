@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { readOnePost, destroyPost, destroyComment, readAllComments } from '../services/api-helper'
+import { readOnePost, destroyPost, destroyComment, readAllComments, createComment } from '../services/api-helper'
 import { Link, withRouter } from 'react-router-dom'
 import CreateComment from './CreateComment'
 import menu from '../images/more.png'
@@ -9,7 +9,12 @@ class SingleImage extends Component {
   state = {
     post: {},
     comments: [],
-    menu: false
+    menu: false,
+    commentFormData: {
+      content: '',
+      user_id: '',
+      post_id: ''
+    }
   }
 
   async componentDidMount() {
@@ -21,6 +26,14 @@ class SingleImage extends Component {
     this.setState({
       comments
     })
+    if (this.props.currentUser) {
+      this.setState({
+        commentFormData: {
+          user_id: this.props.currentUser.id,
+          post_id: this.props.postId
+        }
+      })
+    }
   }
 
   async componentDidUpdate(prevProps, prevState) {
@@ -32,6 +45,33 @@ class SingleImage extends Component {
         comments
       })
     }
+  }
+
+  addComment = async (e) => {
+    e.preventDefault()
+    const formData = this.state.commentFormData
+    const userId = this.props.currentUser.id
+    const postId = this.state.post.id
+    const newComment = await createComment(userId, postId, formData)
+    this.setState(prevState => ({
+      comments: [...prevState.comments, newComment]
+    }))
+    this.setState({
+      commentFormData: {
+        content: ''
+      }
+    })
+    // this.props.history.push(`/accounts/${userId}`)
+  }
+
+  handleCommentChange = (e) => {
+    const { name, value } = e.target;
+    this.setState(prevState => ({
+      commentFormData: {
+        ...prevState.commentFormData,
+        [name]: value
+      }
+    }))
   }
 
   handleMenu = () => {
@@ -56,7 +96,6 @@ class SingleImage extends Component {
   }
 
   render() {
-    window.scrollTo(0, 0)
     const { post } = this.state
     return (
       <div id='singlePage'>
@@ -109,22 +148,25 @@ class SingleImage extends Component {
             {
               this.state.comments.map(comment => (
                 <div className='single-comment' key={comment.id}>
-                  <div id='single-description'>
-                    <Link className='description-user' to={`/accounts/${comment.user_id}`}>
-                      <img className='user-image' src={comment.user.image} alt={comment.user.username} />
-                    </Link>
-                    <Link className='description-user' to={`/accounts/${comment.user_id}`}>
-                      <h1>{comment.user.username}</h1>
-                    </Link>
-                    <p>{comment.content}</p>
-                    {
-                      this.props.currentUser &&
-                        comment.user_id === this.props.currentUser.id ?
-                        <button onClick={() => this.handleCommentDelete(comment.id)}>Delete</button>
-                        :
-                        <></>
-                    }
-                  </div>
+                  {
+                    comment.user &&
+                    <div id='single-description'>
+                      <Link className='description-user' to={`/accounts/${comment.user_id}`}>
+                        <img className='user-image' src={comment.user.image} alt={comment.user.username} />
+                      </Link>
+                      <Link className='description-user' to={`/accounts/${comment.user_id}`}>
+                        <h1>{comment.user.username}</h1>
+                      </Link>
+                      <p>{comment.content}</p>
+                      {
+                        this.props.currentUser &&
+                          comment.user_id === this.props.currentUser.id ?
+                          <button onClick={() => this.handleCommentDelete(comment.id)}>Delete</button>
+                          :
+                          <></>
+                      }
+                    </div>
+                  }
                 </div>
               ))
             }
@@ -135,6 +177,9 @@ class SingleImage extends Component {
           <CreateComment
             postId={this.state.post.id}
             currentUser={this.props.currentUser}
+            handleSubmit={this.addComment}
+            handleChange={this.handleCommentChange}
+            formData={this.state.commentFormData}
           />
         </div>
       </div >

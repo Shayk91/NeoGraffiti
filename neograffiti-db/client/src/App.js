@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { withRouter, Route } from 'react-router-dom';
-import { loginUser, signUpUser, verifyUser, readAllPosts, createPost, getAllUser } from './services/api-helper'
+import { loginUser, signUpUser, verifyUser, readAllPosts, createPost, getAllUser, createComment } from './services/api-helper'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import LogInForm from './components/LogInForm'
@@ -21,6 +21,7 @@ import EditPassword from './components/EditPassword';
 class App extends React.Component {
 
   state = {
+    comments: [],
     posts: [],
     users: [],
     currentUser: null,
@@ -79,13 +80,26 @@ class App extends React.Component {
     }
   }
 
-  // getAllPosts = async () => {
-  //   const posts = await readAllPosts();
-  //   posts.sort(function (a, b) {
-  //     return new Date(b.createdAt) - new Date(a.createdAt)
-  //   })
-  //   this.setState({ posts })
-  // }
+  addPost = async (e) => {
+    e.preventDefault()
+    const formData = this.state.postFormData
+    const userId = this.state.currentUser.id
+    const newPost = await createPost(userId, formData)
+    this.setState(prevState => ({
+      posts: [...prevState.posts, newPost]
+    }))
+    this.props.history.push(`/accounts/${userId}`)
+  }
+
+  handlePostChange = (e) => {
+    const { name, value } = e.target;
+    this.setState(prevState => ({
+      postFormData: {
+        ...prevState.postFormData,
+        [name]: value
+      }
+    }))
+  }
 
   handleChange = (e) => {
     const { name, value } = e.target;
@@ -149,6 +163,9 @@ class App extends React.Component {
                   <MainPage
                     posts={this.state.posts}
                     currentUser={this.state.currentUser}
+                    formData={this.state.commentFormData}
+                    handleChange={this.handleCommentChange}
+                    handleSubmit={this.addComment}
                   />
                   <div id='sideBar'>
                     <SideBar
@@ -232,8 +249,8 @@ class App extends React.Component {
             <CreatePost
               currentUser={this.state.currentUser}
               formData={this.state.postFormData}
-              handleChange={this.handleChange}
-              handleSubmit={this.handleSubmit}
+              handleChange={this.handlePostChange}
+              handleSubmit={this.addPost}
             />
           </div>
         )} />

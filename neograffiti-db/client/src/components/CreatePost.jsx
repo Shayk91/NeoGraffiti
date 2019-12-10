@@ -19,33 +19,34 @@ class CreatePost extends React.Component {
         [name]: value
       }
     }))
+    this.props.handleChange(e)
   }
 
-  handleSubmit = async (e) => {
-    e.preventDefault();
-    const formData = this.state.formData
-    const userId = this.props.currentUser.id
-    await createPost(userId, formData)
-    this.props.history.push('/')
-  }
+  // addPost = async (e) => {
+  //   e.preventDefault();
+  //   const formData = this.state.formData
+  //   const userId = this.props.currentUser.id
+  //   await createPost(userId, formData)
+  //   this.props.history.push('/')
+  // }
 
   render() {
     return (
       <div id='create-post'>
         <div id='show-picture'>
           {
-            this.state.formData.image &&
-            <img className='user-image' src={this.state.formData.image} alt={this.state.formData.id} />
+            this.props.formData.image &&
+            <img className='user-image' src={this.state.formData.image} alt={this.props.formData.id} />
           }
         </div>
         {
-          this.state.formData &&
+          this.props.formData &&
           <form onSubmit={
-            this.handleSubmit
+            this.props.handleSubmit
           }>
             <h1>New Post</h1>
-            <input placeholder='Image Url' name="image" type="text" value={this.state.formData.image} onChange={this.handleChange} />
-            <input placeholder='Write A Caption...' name="content" type="text" value={this.state.formData.content} onChange={this.handleChange} />
+            <input placeholder='Image Url' name="image" type="text" value={this.props.formData.image} onChange={this.handleChange} />
+            <input placeholder='Write A Caption...' name="content" type="text" value={this.props.formData.content} onChange={this.props.handleChange} />
             <button>Share</button>
           </form>
         }
