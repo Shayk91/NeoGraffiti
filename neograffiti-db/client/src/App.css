@@ -556,7 +556,7 @@ html {
   align-self: center;
   padding-bottom: 2%;
   display: grid;
-  grid-template-columns: 20% 40%;
+  grid-template-columns: 30% 40%;
   align-items: center;
 }
 

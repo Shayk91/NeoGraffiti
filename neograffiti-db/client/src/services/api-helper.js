@@ -23,6 +23,7 @@ export const signUpUser = async (registerData) => {
 
 export const verifyUser = async () => {
   const token = localStorage.getItem('authToken');
+  console.log(token)
   if (token) {
     api.defaults.headers.common.authorization = `Bearer ${token}`
     const resp = await api.get('/auth/verify');
@@ -59,7 +60,7 @@ export const readAllPosts = async () => {
 }
 
 export const readAllUserPosts = async (userId) => {
-  const resp = await api.get(`user/${userId}/posts`)
+  const resp = await api.get(`users/${userId}/posts`)
   return resp.data
 }
 

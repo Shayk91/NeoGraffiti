@@ -1,17 +1,22 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { getUser } from '../services/api-helper'
+import { getUser, readAllUserPosts } from '../services/api-helper'
 
 export default class Profile extends Component {
 
   state = {
-    user: {}
+    user: {},
+    posts: []
   }
 
   async componentDidMount() {
     const user = await getUser(this.props.userId)
     this.setState({
       user
+    })
+    const posts = await readAllUserPosts(this.props.userId)
+    this.setState({
+      posts
     })
   }
 
@@ -67,7 +72,7 @@ export default class Profile extends Component {
               <h2>Posts</h2>
               <div id='profile-posts'>
                 {
-                  user.posts.map(post => (
+                  this.state.posts.map(post => (
                     <div className='post-div' key={post.id}>
                       <Link to={`/posts/${post.id}`}>
                         <img src={post.image} alt={post.id} />

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { getUser, updateUser } from '../services/api-helper'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
-export default class EditPassword extends Component {
+class EditPassword extends Component {
 
   state = {
     user: {},
@@ -37,7 +37,7 @@ export default class EditPassword extends Component {
     const userId = parseInt(this.props.userId)
     const formData = this.state.formData
     await updateUser(userId, formData)
-    // this.props.history.push('/')
+    this.props.history.push('/')
   }
 
   render() {
@@ -73,3 +73,4 @@ export default class EditPassword extends Component {
     )
   }
 }
+export default withRouter(EditPassword)

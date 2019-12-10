@@ -45,7 +45,7 @@ class EditProfile extends Component {
     const userId = parseInt(this.props.userId)
     const formData = this.state.formData
     await updateUser(userId, formData)
-    // this.props.history.push(`/accounts/${this.props.userId}`)
+    this.props.history.push(`/accounts/${this.props.userId}`)
   }
 
   handleDelete = async () => {

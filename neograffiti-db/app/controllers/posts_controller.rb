@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.all
+    @posts = Post.order(created_at: :desc)
     @posts=@posts.map do |post|
       post.timedistance =  distance_of_time_in_words(post.created_at, Time.now)
       post
@@ -16,7 +16,7 @@ class PostsController < ApplicationController
 
   def index_by_user
     @user = User.find(params[:user_id])
-    posts = @user.posts
+    posts = @user.posts.order(created_at: :desc)
     render json: posts, include: [:user, :comments], status: :ok
   end
 

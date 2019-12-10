@@ -46,7 +46,6 @@ class App extends React.Component {
   }
 
   async componentDidMount() {
-    // await this.getAllPosts()
     const posts = await readAllPosts()
     this.setState({
       posts
@@ -139,7 +138,7 @@ class App extends React.Component {
     return (
       <div className="App" >
         {
-          this.state.currentUser != null ?
+          this.state.currentUser !== null ?
             <Route exact path='/' render={() => (
               <div>
                 <Header
