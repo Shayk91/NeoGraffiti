@@ -154,7 +154,7 @@ body {
 
 #signup-link {
   text-decoration: none;
-  color: lightgray;
+  color: gray;
 }
 
 #signup {
@@ -322,7 +322,7 @@ body {
 }
 
 .bottom a {
-  color: lightgray;
+  color: gray;
   text-decoration: none;
   font-weight: bold;
 }
@@ -338,7 +338,7 @@ body {
 }
 
 .time {
-  color: lightgray;
+  color: gray;
   font-size: 14px;
   text-transform: capitalize;
 }
@@ -470,7 +470,7 @@ body {
 
 #suggestion-title {
   margin-bottom: 10%;
-  color: lightgray;
+  color: gray;
 }
 
 #suggestions h1 {

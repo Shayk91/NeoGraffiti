@@ -61,7 +61,6 @@ class SingleImage extends Component {
         content: ''
       }
     })
-    // this.props.history.push(`/accounts/${userId}`)
   }
 
   handleCommentChange = (e) => {
@@ -93,6 +92,10 @@ class SingleImage extends Component {
 
   handleCommentDelete = async (commentId) => {
     await destroyComment(commentId)
+    const comments = await readAllComments(this.props.postId)
+    this.setState({
+      comments
+    })
   }
 
   render() {

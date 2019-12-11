@@ -65,12 +65,13 @@ class EditProfile extends Component {
           </Link>
         </div>
         <div id='edit-right'>
-          {this.props.currentUser &&
-            <div id='edit-user'>
+          <div id='edit-user'>
+            {
+              this.state.formData.image &&
               <img className='user-image' src={this.state.formData.image} alt={this.state.user.username} />
-              <h1>{this.state.user.username}</h1>
-            </div>
-          }
+            }
+            <h1>{this.state.user.username}</h1>
+          </div>
           <form id='edit-form' onSubmit={this.handleSubmit}>
             <p>Name</p>
             <input name="full_name" type="text" value={this.state.formData.full_name} onChange={this.handleChange} />

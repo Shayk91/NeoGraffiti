@@ -148,6 +148,19 @@ class App extends React.Component {
     }));
   }
 
+  changeThisName = (id, comment) => {
+    debugger;
+    this.setState(prevState => ({
+      posts: prevState.posts.map(post => {
+        return post.id === id ? {
+          ...post,
+          comments: [...post.comments, comment]
+        } : post
+      })
+    }))
+
+  }
+
   render() {
     return (
       <div className="App" >
@@ -161,6 +174,7 @@ class App extends React.Component {
                 />
                 <div id='main'>
                   <MainPage
+                    changeThisName={this.changeThisName}
                     posts={this.state.posts}
                     currentUser={this.state.currentUser}
                     formData={this.state.commentFormData}
@@ -282,15 +296,6 @@ class App extends React.Component {
             </div>
           </div>
         )} />
-        {/* < Route path='/login' render={() => (
-          <LogInForm
-            handleLogin={this.handleLogin}
-            handleChange={this.authHandleChange}
-            formData={this.state.authFormData}
-            handleLoginButton={this.handleLoginButton}
-          />
-        )} /> */}
-
         < Footer />
       </div >
     )

@@ -12,33 +12,6 @@ class CreateComment extends React.Component {
     }
   }
 
-  // componentDidMount() {
-  //   if (this.props.currentUser) {
-  //     this.setState({
-  //       formData: {
-  //         user_id: this.props.currentUser.id,
-  //         post_id: this.props.postId
-  //       }
-  //     })
-  //   }
-  // }
-
-  // handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   this.setState(prevState => ({
-  //     formData: {
-  //       ...prevState.formData,
-  //       [name]: value
-  //     }
-  //   }))
-  // }
-
-  // handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const formData = this.state.formData
-  //   await createComment(this.props.currentUser.id, this.props.postId, formData)
-  // }
-
   render() {
     return (
       <div>

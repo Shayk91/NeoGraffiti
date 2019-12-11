@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import CreateMainComment from './CreateMainComment'
 
 export default function MainPage(props) {
-  window.scrollTo(0, 0)
   return (
     <div>
       {
@@ -63,6 +62,8 @@ export default function MainPage(props) {
               </div>
             }
             <CreateMainComment
+              changeThisName={props.changeThisName}
+
               handleSubmit={props.handleSubmit}
               handleChange={props.handleChange}
               postId={post.id}

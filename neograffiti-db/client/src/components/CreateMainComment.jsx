@@ -2,7 +2,7 @@ import React from 'react'
 import { createComment } from '../services/api-helper'
 import { withRouter } from 'react-router-dom'
 
-class CreateComment extends React.Component {
+class CreateMainComment extends React.Component {
 
   state = {
     formData: {
@@ -36,7 +36,8 @@ class CreateComment extends React.Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     const formData = this.state.formData
-    await createComment(this.props.currentUser.id, this.props.postId, formData)
+    const newComment = await createComment(this.props.currentUser.id, this.props.postId, formData)
+    this.props.changeThisName(this.props.postId, newComment)
     this.setState({
       formData: {
         content: ''
@@ -66,4 +67,4 @@ class CreateComment extends React.Component {
     )
   }
 }
-export default withRouter(CreateComment)
+export default withRouter(CreateMainComment)

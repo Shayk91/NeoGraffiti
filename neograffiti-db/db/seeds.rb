@@ -43,7 +43,7 @@ post2 = Post.create({
   user_id: 2
 })
 
-comment1 = Comment.create({
+comment2 = Comment.create({
   content: 'Cool Bro',
   user_id: 1,
   post_id: 2
@@ -64,7 +64,7 @@ post3 = Post.create({
   user_id: 3
 })
 
-comment1 = Comment.create({
+comment3 = Comment.create({
   content: 'Cool Bro',
   user_id: 2,
   post_id: 3
@@ -85,7 +85,7 @@ post4 = Post.create({
   user_id: 4
 })
 
-comment1 = Comment.create({
+comment4 = Comment.create({
   content: 'Cool Bro',
   user_id: 3,
   post_id: 4
@@ -106,7 +106,7 @@ post5 = Post.create({
   user_id: 5
 })
 
-comment1 = Comment.create({
+comment5 = Comment.create({
   content: 'Cool Bro',
   user_id: 4,
   post_id: 5
@@ -127,7 +127,7 @@ post6 = Post.create({
   user_id: 6
 })
 
-comment1 = Comment.create({
+comment6 = Comment.create({
   content: 'Cool Bro',
   user_id: 5,
   post_id: 6
@@ -148,7 +148,19 @@ post7 = Post.create({
   user_id: 7
 })
 
-comment1 = Comment.create({
+comment7 = Comment.create({
+  content: 'Cool Bro',
+  user_id: 6,
+  post_id: 7
+})
+
+comment8 = Comment.create({
+  content: 'Cool Bro',
+  user_id: 6,
+  post_id: 7
+})
+
+comment9 = Comment.create({
   content: 'Cool Bro',
   user_id: 6,
   post_id: 7

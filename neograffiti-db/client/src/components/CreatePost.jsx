@@ -22,14 +22,6 @@ class CreatePost extends React.Component {
     this.props.handleChange(e)
   }
 
-  // addPost = async (e) => {
-  //   e.preventDefault();
-  //   const formData = this.state.formData
-  //   const userId = this.props.currentUser.id
-  //   await createPost(userId, formData)
-  //   this.props.history.push('/')
-  // }
-
   render() {
     return (
       <div id='create-post'>
